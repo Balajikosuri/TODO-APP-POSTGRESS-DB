@@ -18,7 +18,7 @@ const todoController = {
       if (rows[0]) {
         return res.json({ data: rows });
       }
-      res.status(404).json({ message: "not found" });
+      res.completed(404).json({ message: "not found" });
     } catch (error) {
       res.json({ message: error });
     }
@@ -29,7 +29,7 @@ const todoController = {
       const { description, completed = false } = req.body;
 
       const sql =
-        "INSERT INTO todos(description, status) VALUES($1, $2) RETURNING *";
+        "INSERT INTO todos(description, completed) VALUES($1, $2) RETURNING *";
 
       const { rows } = await pool.query(sql, [description, completed]);
 
@@ -69,7 +69,7 @@ const todoController = {
         return res.json({ message: "Todo Deleted !" });
       }
 
-      return res.status(404).json({ message: "not found" });
+      return res.completed(404).json({ message: "not found" });
     } catch (error) {
       res.json({ message: error });
     }
