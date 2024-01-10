@@ -18,7 +18,7 @@ const todoController = {
       if (rows[0]) {
         return res.json({ data: rows });
       }
-      res.completed(404).json({ message: "not found" });
+      res.status(404).json({ message: "not found" });
     } catch (error) {
       res.json({ message: error });
     }
@@ -69,7 +69,7 @@ const todoController = {
         return res.json({ message: "Todo Deleted !" });
       }
 
-      return res.completed(404).json({ message: "not found" });
+      return res.status(404).json({ message: "not found" });
     } catch (error) {
       res.json({ message: error });
     }
